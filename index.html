@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <meta name="theme-color" content="#1a1a2e">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <title>Ferber Timer</title>
+  <link rel="manifest" href="manifest.json">
+  <link rel="icon" href="icons/icon-192.png">
+  <link rel="apple-touch-icon" href="icons/icon-192.png">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div id="app">
+    <!-- Setup Screen -->
+    <div id="setup-screen" class="screen active">
+      <h1>Ferber Timer</h1>
+      <p class="subtitle">Gradual check-in sleep training</p>
+
+      <div class="day-selector">
+        <label>Training Day</label>
+        <div class="day-buttons">
+          <button class="day-btn active" data-day="1">Day 1</button>
+          <button class="day-btn" data-day="2">Day 2</button>
+          <button class="day-btn" data-day="3">Day 3</button>
+          <button class="day-btn" data-day="4">Day 4</button>
+          <button class="day-btn" data-day="5">Day 5</button>
+          <button class="day-btn" data-day="6">Day 6</button>
+          <button class="day-btn" data-day="7">Day 7</button>
+        </div>
+      </div>
+
+      <div class="intervals-preview">
+        <label>Check-in Intervals</label>
+        <div id="intervals-list" class="intervals-list"></div>
+      </div>
+
+      <button id="start-btn" class="primary-btn">Start Timer</button>
+    </div>
+
+    <!-- Timer Screen -->
+    <div id="timer-screen" class="screen">
+      <div class="timer-header">
+        <span id="check-label" class="check-label">Check-in #1</span>
+        <span id="day-label" class="day-label">Day 1</span>
+      </div>
+
+      <div class="timer-ring-container">
+        <svg class="timer-ring" viewBox="0 0 200 200">
+          <circle class="timer-ring-bg" cx="100" cy="100" r="90" />
+          <circle id="timer-ring-progress" class="timer-ring-progress" cx="100" cy="100" r="90" />
+        </svg>
+        <div class="timer-display">
+          <span id="timer-minutes" class="timer-digits">00</span>
+          <span class="timer-separator">:</span>
+          <span id="timer-seconds" class="timer-digits">00</span>
+        </div>
+      </div>
+
+      <div class="timer-info">
+        <div class="info-item">
+          <span class="info-label">Current interval</span>
+          <span id="current-interval" class="info-value">3 min</span>
+        </div>
+        <div class="info-item">
+          <span class="info-label">Next interval</span>
+          <span id="next-interval" class="info-value">5 min</span>
+        </div>
+      </div>
+
+      <div class="timer-controls">
+        <button id="pause-btn" class="control-btn">Pause</button>
+        <button id="skip-btn" class="control-btn secondary">Skip</button>
+        <button id="stop-btn" class="control-btn danger">Stop</button>
+      </div>
+    </div>
+
+    <!-- Alert Screen -->
+    <div id="alert-screen" class="screen">
+      <div class="alert-content">
+        <div class="alert-icon pulse">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M12 2a7 7 0 0 0-7 7v4l-2 3h18l-2-3V9a7 7 0 0 0-7-7z"/>
+            <path d="M9 21a3 3 0 0 0 6 0"/>
+          </svg>
+        </div>
+        <h2>Time to Check In</h2>
+        <p id="alert-check-number">Check-in #1</p>
+        <p class="alert-instruction">Brief comfort, then leave the room</p>
+        <button id="checked-btn" class="primary-btn">Done - Start Next Interval</button>
+        <button id="end-session-btn" class="control-btn secondary">End Session (Baby Asleep)</button>
+      </div>
+    </div>
+
+    <!-- Complete Screen -->
+    <div id="complete-screen" class="screen">
+      <div class="complete-content">
+        <div class="complete-icon">&#10003;</div>
+        <h2>Session Complete</h2>
+        <div id="session-summary" class="session-summary"></div>
+        <button id="restart-btn" class="primary-btn">New Session</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
